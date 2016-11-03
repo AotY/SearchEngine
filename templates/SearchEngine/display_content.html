@@ -1,0 +1,93 @@
+{# Load the tag library #}
+{% load bootstrap3 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+<style>
+.footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin-top: 50px;
+    padding: 1rem;
+    background-color: #efefef;
+    text-align: center;
+}
+
+.container {
+    padding-top: 120px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+.input-group {
+  margin-top: 50px;
+
+  /*padding: 5px;*/
+  /*margin: 20px;*/
+}
+
+.form-control {
+  padding-top: 27px;
+  padding-bottom: 27px;
+  /*margin-left: 20px;*/
+}
+
+#btn-input-group{
+ /* padding-top: 25px;
+  padding-bottom: 25px;
+  padding-bottom: 20px;*/
+  padding-top: 20px;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+#rule-panel-default
+{
+ /* padding-top: 25px;
+  padding-bottom: 25px;*/
+  margin-top: 50px;
+
+}
+
+#btn-group-left
+{
+ position:relative;
+ left:20px;
+}
+
+#user-jumbotron{
+  margin-top: 80px;
+}
+
+#user-login-btn{
+  margin-right: 20px;
+}
+</style>
+
+<title> 内容 </title>
+
+
+
+{% block bootstrap3_content %}
+
+<!-- The scrollable area -->
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
+
+
+<div class="container">
+
+    <h4 id="name"> {{ name }} </h4>
+    <p id="content"> {{ content }} </p>
+
+
+    <!-- Site footer -->
+{#    <footer class="footer">#}
+{#        <p>&copy; 2016 LeoTao .</p>#}
+{#    </footer>#}
+
+</div> <!-- /container -->
+
+{% endblock %}

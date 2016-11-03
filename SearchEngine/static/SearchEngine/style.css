@@ -1,0 +1,44 @@
+
+.input-group {
+  margin-top: 50px;
+
+  /*padding: 5px;*/
+  /*margin: 20px;*/
+}
+
+.form-control {
+  padding-top: 27px;
+  padding-bottom: 27px;
+  /*margin-left: 20px;*/
+}
+
+#btn-input-group{
+ /* padding-top: 25px;
+  padding-bottom: 25px;
+  padding-bottom: 20px;*/
+  padding-top: 20px;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+#rule-panel-default
+{
+ /* padding-top: 25px;
+  padding-bottom: 25px;*/
+  margin-top: 50px;
+
+}
+
+#btn-group-left
+{
+ position:relative;
+ left:20px;
+}
+
+#user-jumbotron{
+  margin-top: 80px;
+}
+
+#user-login-btn{
+  margin-right: 20px;
+}

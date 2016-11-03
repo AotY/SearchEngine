@@ -1,0 +1,184 @@
+{# Load the tag library #}
+{% load bootstrap3 %}
+
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link rel="stylesheet" href="http://cdn.dowebok.com/98/css/animate.min.css">
+<script src="http://cdn.dowebok.com/131/js/wow.min.js"></script>
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+<style>
+.footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin-top: 50px;
+    padding: 1rem;
+    background-color: #efefef;
+    text-align: center;
+}
+
+.container {
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.input-group {
+  margin-top: 30px;
+
+  /*padding: 5px;*/
+  /*margin: 20px;*/
+}
+
+.form-control {
+  padding-top: 17px;
+  padding-bottom: 17px;
+  /*margin-left: 20px;*/
+}
+
+#btn-input-group{
+ /* padding-top: 25px;
+  padding-bottom: 25px;
+  padding-bottom: 20px;*/
+  padding-top: 5px;
+  padding-bottom: 5px;
+  text-align: center;
+}
+
+#rule-panel-default
+{
+ /* padding-top: 25px;
+  padding-bottom: 25px;*/
+  margin-top: 30px;
+
+}
+
+#btn-group-left
+{
+ position:relative;
+ left:20px;
+}
+
+#user-jumbotron{
+  margin-top: 80px;
+}
+
+#user-login-btn{
+  margin-right: 20px;
+}
+</style>
+
+<script>
+
+
+function display_content() {
+    var item = document.getElementById("item_name")
+{#    var path = item.getElementById("name").getAttribute("name")#}
+    var path = item.getAttribute("name")
+    var name = item.textContent
+    document.getElementById("demo").innerHTML = name
+    var params = {'name': name, 'path': path}
+{#    post("display_content.html", params, "post")#}
+
+
+    return true
+}
+
+function post(path, params, method) {
+    method = method || "post"; // Set method to post by default if not specified.
+
+    // The rest of this code assumes you are not using a library.
+    // It can be made less wordy if you use one.
+    var form = document.createElement("form");
+    form.setAttribute("method", method);
+    form.setAttribute("action", path);
+
+    for(var key in params) {
+        if(params.hasOwnProperty(key)) {
+            var hiddenField = document.createElement("input");
+            hiddenField.setAttribute("type", "hidden");
+            hiddenField.setAttribute("name", key);
+            hiddenField.setAttribute("value", params[key]);
+
+            form.appendChild(hiddenField);
+         }
+    }
+
+    document.body.appendChild(form);
+    form.submit();
+}
+
+jQuery(document).on('click', ".list-group-item", function(){
+    var $this = $(this);
+    var index = $this.attr('id').split('-')[1]
+
+{#    document.getElementById("demo").innerHTML = index#}
+    var params = {"index": index}
+    post("display_content.html", params, "post")
+
+});
+
+</script>
+
+<title> 搜索结果 </title>
+
+
+{% block bootstrap3_content %}
+
+<!-- The scrollable area -->
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
+
+
+<div class="container">
+    <p id="demo"></p>
+    <form class="input-group" role="search" method="post">{% csrf_token %}
+        <div class="form-group">
+            <input type="text" class="form-control" name="keyword-input" placeholder="输入关键词..." value= {{ last_query }}>
+        </div>
+        <span class="input-group-btn">
+              <button class="btn btn-lg btn-success" id='btn-input-group'
+                      type="submit">搜索一下</button>
+            </span>
+    </form>
+    <!--</form>formaction="/pages/submit"  -->
+    <div class="list-group">
+      {% for file in files %}
+          <a href="#" id="id-{{file.index}}" class="list-group-item" >{% csrf_token %}
+                <h4 id="item_name" class="list-group-item-heading" > {{ file.name }}</h4>
+                <p id="item_content" class="list-group-item-text"> {{ file.content }}</p>
+          </a>
+      {% endfor %}
+    </div>
+
+
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+            <li>
+                <a href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li>
+                <a href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+{#    <!-- Site footer -->#}
+{#    <footer class="footer">#}
+{#        <p>&copy; 2016 LeoTao .</p>#}
+{#    </footer>#}
+
+</div> <!-- /container -->
+
+{% endblock %}
